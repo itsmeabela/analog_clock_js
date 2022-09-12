@@ -19,5 +19,38 @@
         <div class="sc" id="sc"></div>
       </div>
     </div>
+    <div class="switch">
+      <div class="btn"></div>
+    </div>
+    <script>
+      const hr = document.getElementById("hr");
+      const mn = document.getElementById("mn");
+      const sc = document.getElementById("sc");
+      const btn = document.querySelector(".btn");
+      const body = document.querySelector("body");
+      function time() {
+        let now = new Date();
+
+        const sec = now.getSeconds();
+        const min = now.getMinutes();
+        const hour = now.getHours();
+
+        const secDegrees = (sec / 60) * 360;
+        const minsDegrees = min * 60 * 360 + (sec / 60) * 6;
+        const hourDegrees = hour * 12 * 360 + (min / 60) * 30;
+
+        hr.style.transform = `rotate(${hourDegrees}deg)`;
+        mn.style.transform = `rotate(${minsDegrees}deg)`;
+        sc.style.transform = `rotate(${secDegrees}deg)`;
+      }
+      setInterval(time, 1000);
+
+      //   switch
+
+      btn.onclick = function () {
+        body.classList.toggle("on");
+        body.classList.toggle("lightmode");
+      };
+    </script>
   </body>
 </html>
