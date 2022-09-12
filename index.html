@@ -19,6 +19,9 @@
         <div class="sc" id="sc"></div>
       </div>
     </div>
+    <div class="digital--clock">
+      <div><h1 class="dighour">12:00:00</h1></div>
+    </div>
     <div class="switch">
       <div class="btn"></div>
     </div>
@@ -28,17 +31,21 @@
       const sc = document.getElementById("sc");
       const btn = document.querySelector(".btn");
       const body = document.querySelector("body");
+      const digHour = document.querySelector("div .dighour");
+
       function time() {
         let now = new Date();
 
         const sec = now.getSeconds();
         const min = now.getMinutes();
         const hour = now.getHours();
-
+        const prepended_sec = String(sec).padStart(2, "0");
+        const prepended_min = String(min).padStart(2, "0");
         const secDegrees = (sec / 60) * 360;
         const minsDegrees = min * 60 * 360 + (sec / 60) * 6;
         const hourDegrees = hour * 12 * 360 + (min / 60) * 30;
 
+        digHour.textContent = `${hour}:${prepended_min}:${prepended_sec}`;
         hr.style.transform = `rotate(${hourDegrees}deg)`;
         mn.style.transform = `rotate(${minsDegrees}deg)`;
         sc.style.transform = `rotate(${secDegrees}deg)`;
